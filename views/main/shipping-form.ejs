@@ -1,0 +1,84 @@
+<% layout('layout') -%>
+<div class="container mt-10">
+  <div class="form-group">
+    <p class="display-4">Shipping Address Details</p>
+  </div>
+  <form role="form" action="/product-checkout" method="GET">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <input
+            type="text"
+            name="fname"
+            id="fname"
+            class="form-control"
+            placeholder="Full name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="mobile"
+            id="mobile"
+            class="form-control"
+            placeholder="Mobile Number"
+            required
+            maxlength="10"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="pincode"
+            id="pincode"
+            class="form-control"
+            placeholder="PIN code"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="flatno"
+            id="flatno"
+            class="form-control"
+            placeholder="Flat, House no., Building, Company, Apartment"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="area_colony"
+            id="area_colony"
+            class="form-control"
+            placeholder="Area, Colony, Street, Sector, Village"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="landmark"
+            placeholder="Landmark e.g. near ABC Mall"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="town"
+            placeholder="Town/City"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-info btn-sm">
+          Proceed with Payment
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

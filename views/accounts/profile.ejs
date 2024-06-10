@@ -1,0 +1,78 @@
+<% layout('layout') -%>
+
+<style>
+    .img-history {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+<div class="containerWrapper mt-10">
+<div class="row">
+    <div class="col-lg-4">
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <img class="d-block img-fluid mb-3 rounded-circle" src="<%= user.profile.picture %>">
+            <a class="btn btn-info btn-sm btn-center" href="/edit-profile">Edit Profile</a>
+     
+        </div>
+
+        <div class="mt-10">
+
+            <p class="profileName"><%= user.profile.name %></p>
+            <p class="lead userEmail"><%= user.email %></p>
+    
+            <% if (user.address === "" || typeof user.address === 'undefined') { %>
+    
+                <p>Address: <span style="color:#c0392b; font-weight: bold;">You have no address</span></p>
+    
+            <% } else { %>
+    
+            <p class="userAddress"> <%= user.address %></p>
+    
+            <% } %>
+        </div>
+     
+    </div>
+
+    
+    <div class="col-lg-8">
+        <h3 class="text-center">History</h4>
+        <table class="table table-striped sticky-header">
+            <thead >
+                <tr>
+                    <th>_id</th>
+                    <th>Items</th>
+                    <th>Amount </th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <div class="row">
+                <% for(var i=0; i < user.history.length; i++) {%>
+                    <tr>
+                        <td><%= user.history[i]._id %></td>
+                        <td style="display: flex; align-items: start;">
+                            <div class="col-md-4">
+                                <img class="img-history" src="<%= user.history[i].item.image %>" alt="">
+                            </div>
+                            <div class="col-md-6">
+                                <p>
+                                    <%= user.history[i].item.name %>
+                                </p>
+                            </div>
+                        </td>
+                        <div class="col-md-2">
+                            <td><i class="fas fa-rupee-sign"></i> <strong><%= user.history[i].paid %></strong>
+                            </td>
+                        </div>
+                    </tr>
+                    <% } %>
+                </div>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>

@@ -1,0 +1,102 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="containerWrapper">
+    <div style="display: flex; gap: 5px; align-items: center">
+      <img
+        style="height: 40px; width: 40px"
+        src="/assets/nav-brand-image.svg"
+        alt=""
+      />
+      <a href="/" class="navbar-brand">Stronics</a>
+    </div>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+      aria-controls="navbarsExampleDefault"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ml-auto" style="display: flex; gap: 25px">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="dropdown01"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            >Categories</a
+          >
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <% for(var i = 0; i < categories.length; i++) { %>
+            <a
+              class="createHoverSignup dropdown-item"
+              href="/products/<%= categories[i]._id %>"
+              ><%= categories[i].name %></a
+            >
+            <% } %>
+          </div>
+        </li>
+
+        <% if(!user) { %>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="dropdown01"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            >SignUp/Login</a
+          >
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="createHoverSignup dropdown-item" href="/signup"
+              ><i class="fas fa-user-plus"></i> SignUp</a
+            >
+            <a class="createHoverLogin dropdown-item" href="/login"
+              ><i class="fas fa-user"></i> Login</a
+            >
+          </div>
+        </li>
+        <% } else { %>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link"
+            href="#"
+            id="dropdown01"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            ><i class="fas fa-user"></i> <%= user.profile.name %></a
+          >
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" href="/profile"
+              ><i class="fas fa-user-circle"></i> Profie</a
+            >
+            <a class="dropdown-item" href="/logout"
+              ><i class="fas fa-user-times"></i> Logout</a
+            >
+          </div>
+        </li>
+        <% } %> <% if(user) { %>
+        <li style="color: #fff" class="nav-link">
+          <a href="/cart" class="fas fa-shopping-cart"
+            ><span class="badge badge-info"><%= cart %></span></a
+          >
+        </li>
+        <% } else { %>
+        <li style="color: #fff" class="nav-link">
+          <a href="/cart" class="fas fa-shopping-cart"
+            ><span class="badge badge-info">0</span></a
+          >
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>

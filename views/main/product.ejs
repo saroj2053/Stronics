@@ -1,0 +1,60 @@
+<% layout('layout') -%>
+
+<div class="containerWrapper mt-10">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="list-group">
+                <span class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-3">
+                           <img class="img-fluid" src="../<%= product.image %>" alt="logitech mouse">
+                        </div>
+            
+                        <div class="col-md-9 jumbotron">
+                            <h4 class="product-heading">
+                                <%= product.name %>
+                            </h4>
+                            
+                                <p>
+                                    <%= product.description %>
+                                </p>
+                            
+                            <p><strong>Product Color:</strong> <%= product.color %>
+                            </p>
+                            <p><strong>Product Material:</strong> <%= product.productMaterial %>
+                            </p>
+                            <strong><h4 style="color: rgb(21, 160, 107);">Price: <i class="fas fa-rupee-sign"></i>
+                                <%= product.price %>
+                            </h4></strong>
+                            <form action='' method="post">
+                                <div class="btn-group" role="group" aria-label="...">
+                                    <input type="hidden" name="quantity" id="quantity" value="1"></input>
+                                    <button type="button" id="minus" class="btn btn-outline-secondary">-</button>
+                                    <button type="button" id="total" class="btn btn-outline-secondary">1</button>
+                                    <button type="button" id="plus" class="btn btn-outline-secondary">+</button>
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" name="product_id" id="quantity" value="<%= product._id %>"></input>
+                                    <input type="hidden" name="priceHidden" id="priceHidden" value="<%= product.price %>"></input>
+                                    <br>
+                                
+                                <div class="col-md-4">
+                                    <label for="priceValue"><strong>Total Cost: <i class="fas fa-rupee-sign"></i></strong></label>
+                                    <input type="text" name="priceValue" id="priceValue" class="form-control total-cost-enhancer" value="<%= product.price %>"></input>
+                                </div>
+                                </div>
+            
+                                <% if (user) { %>
+                                    <button type="submit" class="btn btn-primary btn-sm">Add to Cart</button>
+                                    <% } else { %>
+                                        <a href='/signup' class="btn btn-warning btn-sm">Signup to begin buying!</a>
+                                        <% } %>
+                            </form>
+            
+                        </div>
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

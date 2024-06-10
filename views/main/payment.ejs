@@ -1,0 +1,43 @@
+<% layout('layout') -%>
+
+<div class="containerWrapper mt-10">
+  <div class="row">
+    <div class="list-group">
+      <span class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">
+            <img
+              class="img-fluid"
+              src="assets/payment-gateway.png"
+              alt=""
+              srcset=""
+            />
+          </div>
+          <div class="col-md-6">
+            <p class="display-4">Welcome to Stripe Payment Gateway</p>
+          </div>
+
+          <div class="col-md-2">
+            <form action="/payment" method="POST">
+              <script
+                src="//checkout.stripe.com/v2/checkout.js"
+                class="stripe-button"
+                name="stripeCurrency"
+                data-key="<%= key %>"
+                data-amount="<%= cartItems.total %>"
+                data-currency="usd"
+                data-description="M | Ecommerce Website"
+                data-image="/assets/mlogo.png"
+                data-locale="auto"
+              ></script>
+            </form>
+          </div>
+        </div>
+      </span>
+    </div>
+  </div>
+</div>
+
+<script>
+  $("#year").text(new Date().getFullYear());
+</script>

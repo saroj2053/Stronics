@@ -1,0 +1,73 @@
+<% layout('layout') -%>
+
+<div class="containerWrapper mt-10">
+    <% if (message.length> 0) { %>
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <%= message %>
+        </div>
+        <% } %>
+    <div class="row">
+        <div class="col-lg-6">
+            <% for (var i = 0; i < foundCart.items.length; i++) { %>
+            <div class="list-group">
+                <span class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span><img class="img-fluid" src="<%= foundCart.items[i].item.image %>"></span>
+                        </div>
+
+                        <div class="col-md-5">
+                            <p class="list-group-item-heading"><%= foundCart.items[i].item.name %></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="lead">Quantity: <%= foundCart.items[i].quantity %></p>
+                            <p>Price: Rs <%= foundCart.items[i].price %></p>
+
+                            <form method="post" action="/remove">
+                                <input type="hidden" name="item" value="<%= foundCart.items[i]._id %>">
+                                <input type="hidden" name="price" value="<%= foundCart.items[i].price %>">
+                                <button class="btn btn-outline-primary btn-sm" type="submit" type="button">Remove</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </span>
+            </div>
+
+            <% } %>
+        </div>
+
+        <div class="col-md-2"></div>
+
+        <div class="col-md-4">            
+            <% if(foundCart.total > 0) { %>
+                <div class="form-group">
+                    <div style="text-align: center;" class="card">
+                        <div class="card-header">
+                            <h6 class="text-center">Summary</h6>
+                        </div>
+                        <h6>SubTotal: Rs <span class="totalPrice"><%= foundCart.total %></span></h6>
+                        <h6>Shipping: Rs 0</h6>
+                        <h6>GST : 0% </h6>
+                        <hr>
+                        <h6>Total : Rs <%= foundCart.total %></h6>
+                        <input type="hidden" value="<%= foundCart.total %>">
+                        <a type="submit" class="btn btn-info btn-sm text-center" href="/shipping-form">Checkout</a>     
+                    </div>
+                </div>
+            <% } else { %>
+        </div>
+    </div>
+
+        
+            <img src="assets/no-item-found-here.png" alt="no-items-logo">
+            <a class="btn btn-outline-info button-center" href="/"><strong class="display-4">Browse products</strong></a>
+            <% } %>
+   
+            
+
+</div>
+</div>

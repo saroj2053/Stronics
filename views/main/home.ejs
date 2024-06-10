@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Stronics - An ecommerce store</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="containerWrapper">
+        <div style="display: flex; gap: 5px; align-items: center">
+          <img
+            style="height: 40px; width: 40px"
+            src="/assets/nav-brand-image.svg"
+            alt=""
+          />
+          <a href="/" class="navbar-brand">Stronics</a>
+        </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+          aria-controls="navbarsExampleDefault"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul
+            class="navbar-nav nav-items ml-auto"
+            style="display: flex; gap: 25px"
+          >
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown"
+                href="#"
+                id="dropdown01"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Categories</a
+              >
+              <div class="dropdown-menu" aria-labelledby="dropdown01">
+                <% for(var i = 0; i < categories.length; i++) { %>
+                <a
+                  class="createHoverSignup dropdown-item"
+                  href="/products/<%= categories[i]._id %>"
+                  ><%= categories[i].name %></a
+                >
+                <% } %>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown"
+                href="#"
+                id="dropdown01"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >SignUp/Login</a
+              >
+              <div class="dropdown-menu" aria-labelledby="dropdown01">
+                <a class="createHoverSignup dropdown-item" href="/signup"
+                  ><i class="fas fa-user-plus"></i> SignUp</a
+                >
+                <a class="createHoverLogin dropdown-item" href="/login"
+                  ><i class="fas fa-user"></i> Login</a
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item carousel-image-1 active">
+          <div class="container">
+            <div class="carousel-caption d-none d-sm-block text-left mb-5">
+              <h1 class="display-3">Shop Smart, Save Big!</h1>
+              <p class="lead">Starting point to create something more unique</p>
+              <a href="/signup" class="btn btn-primary btn-sm">Sign Up Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item carousel-image-2">
+          <div class="container">
+            <div class="carousel-caption d-none text-center d-sm-block mb-5">
+              <h1 class="display-3">Start your search !</h1>
+              <p class="lead">
+                There are some exciting products which you should check out :)
+              </p>
+              <a href="#" class="btn btn-success btn-sm">Browse Categories</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item carousel-image-3">
+          <div class="container">
+            <div class="carousel-caption d-none d-sm-block text-right mb-5">
+              <h1 class="display-3">Build a Small Cart</h1>
+              <p class="lead">
+                The more smart items you buy together, the more you save :)
+              </p>
+              <a href="#" class="btn btn-success btn-sm">Browse Categories</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#myCarousel" data-slide="prev" class="carousel-control-prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+
+      <a href="#myCarousel" data-slide="next" class="carousel-control-next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+    </div>
+
+    <div class="containerWrapper" style="margin-top: 50px">
+      <div class="row app__features">
+        <div class="col-md-4">
+          <div class="app__feature">
+            <img class="home-image" src="/assets/search--v2.png" alt="" />
+            <h3>Start your search here</h3>
+            <p>Signup to start Buying</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="app__feature">
+            <img class="home-image" src="/assets/look.png" alt="" />
+            <h3>Look for Smart items?</h3>
+            <p>These will appear across the site as you add to your cart</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="app__feature">
+            <img class="home-image" src="/assets/cart-img.png" alt="" />
+            <h3>Build a smart cart</h3>
+            <p>The more smart items you buy together, the more you save :)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <% include ../partials/footer %> -->
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script>
+      $("#year").text(new Date().getFullYear());
+    </script>
+  </body>
+</html>

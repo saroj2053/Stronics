@@ -1,0 +1,53 @@
+<% layout('layout') -%>
+
+<div class="container">
+  <h1 class="display-4">Search Results</h1>
+  <hr />
+  <% if (products.length === 0) { %>
+  <div class="alert alert-success alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h6 class="display-4">No Products !!!</h6>
+  </div>
+  <div class="text-center">
+    <img class="rounded" src="/assets/no-product-found.png" alt="" srcset="" />
+  </div>
+
+  <% } else { %>
+
+  <div class="list-group">
+    <% for (var i=0; i< products.length; i++) { %>
+    <span class="list-group-item">
+      <div class="row" id="searchResults">
+        <div class="col-md-4">
+          <img class="img-fluid" src="<%= products[i].image %>" alt="" />
+        </div>
+        <div class="col-md-8 caption">
+          <h2 class="display-4"><%= products[i].name %></h2>
+          <p class="category-product-page product-heading">
+            <strong>Description:</strong>
+            <%= products[i].description %>
+          </p>
+          <p class="product-heading">
+            <i class="fas fa-rupee-sign"></i>
+            <strong> <%= products[i].price %> </strong>
+          </p>
+          <p class="product-id">
+            <strong>ID:</strong>
+            <%= products[i]._id %>
+          </p>
+        </div>
+        <div class="col-md-2">
+          <a
+            class="btn btn-outline-info more-info"
+            href="/product/<%= products[i]._id %>"
+            >More Info</a
+          >
+        </div>
+      </div>
+    </span>
+    <% } %>
+  </div>
+  <% } %>
+</div>
