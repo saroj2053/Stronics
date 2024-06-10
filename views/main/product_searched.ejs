@@ -21,16 +21,21 @@
     <span class="list-group-item">
       <div class="row" id="searchResults">
         <div class="col-md-4">
-          <img class="img-fluid" src="<%= products[i].image %>" alt="" />
+          <img
+            style="width: 200px; height: 200px; object-fit: contain"
+            class="img-fluid"
+            src="<%= products[i].image %>"
+            alt=""
+          />
         </div>
         <div class="col-md-8 caption">
-          <h2 class="display-4"><%= products[i].name %></h2>
-          <p class="category-product-page product-heading">
+          <h2 class=""><%= products[i].name %></h2>
+          <p class="">
             <strong>Description:</strong>
             <%= products[i].description %>
           </p>
           <p class="product-heading">
-            <i class="fas fa-rupee-sign"></i>
+            <i class="fas fa-euro-sign"></i>
             <strong> <%= products[i].price %> </strong>
           </p>
           <p class="product-id">
