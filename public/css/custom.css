@@ -1,5 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
 :root {
   --text-slate-700: #334155;
+}
+
+body {
+  font-family: "Rubik", sans-serif !important;
 }
 
 .paddingTop {
@@ -201,6 +207,7 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  gap: 20px;
   justify-content: space-between;
   align-items: center;
 }
@@ -211,7 +218,10 @@
   border-radius: 8px;
   padding: 25px;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
   cursor: pointer;
 }
@@ -233,14 +243,16 @@
 .productsWrapper {
   width: 100%;
   display: flex;
-  gap: 30px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
 .productContainer {
-  width: 22%;
+  width: 24%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border: 2px solid lightgray;
   padding: 25px;
 }

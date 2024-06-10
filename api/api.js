@@ -5,7 +5,6 @@ var Category = require("../models/category");
 var Product = require("../models/product");
 
 router.post("/:name", function (req, res, next) {
-  console.log("hello, world");
   async.waterfall([
     function (callback) {
       Category.findOne({ name: req.params.name }, function (err, category) {
@@ -18,7 +17,7 @@ router.post("/:name", function (req, res, next) {
       product.category = category._id;
       product.name = req.body.productName;
       product.color = req.body.productColor;
-      product.productMaterial = req.body.productMaterial;
+      product.stock = req.body.productStock;
       product.price = req.body.productPrice;
       product.image = req.body.productImage;
       product.description = req.body.productDesc;

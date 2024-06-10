@@ -18,17 +18,15 @@
     </div>
     <% } else { %>
 
-    <h4 class="display-4 mb-5">
-      Showing results for <%= products[0].category.name %>
-    </h4>
+    <h4 class="mb-5">Showing results for <%= products[0].category.name %></h4>
 
     <div class="category__products">
       <% for (var i=0; i< products.length; i++) { %>
       <div class="category__product">
         <div>
           <img
-            style="width: 100px; height: 100px"
-            class="img-thumbnail"
+            style="width: 100px; height: 100px; object-fit: contain"
+            class="img-fluid"
             src="../<%= products[i].image %>"
             alt=""
           />
