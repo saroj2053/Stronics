@@ -210,6 +210,7 @@ router.post("/", function (req, res, next) {
         res.render("main/product_searched", {
           products: products,
           category: category,
+          search_term: q,
         });
       }
     }

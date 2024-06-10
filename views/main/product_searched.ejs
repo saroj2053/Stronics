@@ -1,7 +1,7 @@
 <% layout('layout') -%>
 
-<div class="wrapper mt-5">
-  <h1 class="display-4">Search Results</h1>
+<div class="wrapper my-5">
+  <h4>Search Results for: <%= search_term %></h4>
   <hr />
   <% if (products.length === 0) { %>
   <div class="alert alert-success alert-dismissable">
@@ -22,30 +22,24 @@
       <div class="row" id="searchResults">
         <div class="col-md-4">
           <img
-            style="width: 200px; height: 200px; object-fit: contain"
-            class="img-fluid"
+            class="img-fluid searchedProduct__images"
             src="<%= products[i].image %>"
             alt=""
           />
         </div>
         <div class="col-md-8 caption">
-          <h2 class=""><%= products[i].name %></h2>
-          <p class="">
-            <strong>Description:</strong>
+          <h2 class="searched-product__heading"><%= products[i].name %></h2>
+          <p class="searched-product__description">
             <%= products[i].description %>
           </p>
           <p class="product-heading">
             <i class="fas fa-euro-sign"></i>
             <strong> <%= products[i].price %> </strong>
           </p>
-          <p class="product-id">
-            <strong>ID:</strong>
-            <%= products[i]._id %>
-          </p>
         </div>
         <div class="col-md-2">
           <a
-            class="btn btn-outline-info more-info"
+            class="btn btn-outline-info more-info my-3"
             href="/product/<%= products[i]._id %>"
             >More Info</a
           >

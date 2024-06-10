@@ -276,3 +276,30 @@ body {
 }
 
 /* ################## */
+
+/* ###################### */
+
+/* search results page */
+
+.searchedProduct__images {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.searched-product__heading {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text-slate-700);
+}
+
+.searched-product__description {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.5;
+  text-align: justify;
+  color: var(--text-slate-700);
+}
+
+/* ###################### */
