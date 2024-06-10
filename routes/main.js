@@ -8,6 +8,15 @@ var passportConf = require("../config/passport");
 var category = require("../models/category");
 var stripe = require("stripe")(process.env.SECRET_KEY);
 
+const shuffleProductsArray = (prod) => {
+  for (let i = 0; i < prod.length; i++) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [prod[i], prod[j]] = [prod[j], prod[i]];
+  }
+
+  return prod;
+};
+
 router.get("/", function (req, res, next) {
   if (req.user) {
     Product.find()
@@ -16,8 +25,9 @@ router.get("/", function (req, res, next) {
         if (err) return next(err);
         Product.count().exec(function (err, count) {
           if (err) return next(err);
+          const shuffledProducts = shuffleProductsArray(products);
           res.render("main/product-main", {
-            products: products,
+            products: shuffledProducts,
           });
         });
       });
