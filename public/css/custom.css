@@ -302,4 +302,9 @@ body {
   color: var(--text-slate-700);
 }
 
+.searched-product__price {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
 /* ###################### */
