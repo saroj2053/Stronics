@@ -21,7 +21,7 @@
                             
                             <p>Product Color: <strong><%= product.color %></strong>
                             </p>
-                            <p style="color: rgb(21, 160, 107);">Price: <i class="fas fa-euro-sign"></i>
+                            <p style="color: rgb(21, 160, 107);">Price: <i class="fas fa-rupee-sign"></i>
                                 <%= product.price %>
                             </p>
                             <form action='' method="post">
@@ -38,7 +38,7 @@
                                 </div>
                                 
                                 <div style="display: flex; gap: 10px; align-items: center;">
-                                    <label for="priceValue">Total Cost: <i class="fas fa-euro-sign"></i></label>
+                                    <label for="priceValue">Total Cost: <i class="fas fa-rupee-sign"></i></label>
                                     <input type="text" name="priceValue" id="priceValue" class="total-cost-enhancer" value="<%= product.price %>"></input>
                                 </div>
             
@@ -79,7 +79,7 @@
         <h2><%= similarProducts[i].name %></h2>
         <div class="caption">
           <p>
-            <i class="fas fa-euro-sign"></i>
+            <i class="fas fa-rupee-sign"></i>
             <%= similarProducts[i].price %>
           </p>
         </div>
