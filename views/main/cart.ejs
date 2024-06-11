@@ -1,6 +1,6 @@
 <% layout('layout') -%>
 
-<div class="containerWrapper mt-10">
+<div class="wrapper mt-10">
     <% if (message.length> 0) { %>
         <div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -10,13 +10,13 @@
         </div>
         <% } %>
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-8">
             <% for (var i = 0; i < foundCart.items.length; i++) { %>
             <div class="list-group">
                 <span class="list-group-item">
                     <div class="row">
                         <div class="col-md-3">
-                            <span><img class="img-fluid" src="<%= foundCart.items[i].item.image %>"></span>
+                            <span><img style="height: 200px; object-fit: contain;" class="img-fluid" src="<%= foundCart.items[i].item.image %>"></span>
                         </div>
 
                         <div class="col-md-5">
@@ -40,8 +40,6 @@
             <% } %>
         </div>
 
-        <div class="col-md-2"></div>
-
         <div class="col-md-4">            
             <% if(foundCart.total > 0) { %>
                 <div class="form-group">
@@ -58,14 +56,17 @@
                         <a type="submit" class="btn btn-info btn-sm text-center" href="/shipping-form">Checkout</a>     
                     </div>
                 </div>
+                
             <% } else { %>
         </div>
     </div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
 
-        
-            <img src="assets/no-item-found-here.png" alt="no-items-logo">
-            <a class="btn btn-outline-info button-center" href="/"><strong class="display-4">Browse products</strong></a>
+                    <img src="assets/no-item-found-here.png" alt="no-items-logo">
+                    <a class="btn btn-outline-info" href="/">Browse products</a>
+                </div>
             <% } %>
+        
    
             
 

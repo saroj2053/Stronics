@@ -334,6 +334,7 @@ body {
   padding: 5px;
   width: 100px;
   height: 100px;
+  object-fit: contain;
 }
 
 /* media queries */
