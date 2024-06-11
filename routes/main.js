@@ -52,13 +52,24 @@ router.get("/products/:id", function (req, res, next) {
 });
 
 router.get("/product/:id", function (req, res, next) {
-  Product.findById({ _id: req.params.id }, function (err, product) {
-    if (err) return next(err);
-    console.log(product);
-    res.render("./main/product", {
-      product: product,
+  Product.findById(req.params.id)
+    .populate("category")
+    .exec(function (err, product) {
+      if (err) return next(err);
+      console.log(product);
+
+      Product.find({ category: product.category._id }).exec(function (
+        err,
+        similarProducts
+      ) {
+        if (err) return next(err);
+        console.log(similarProducts);
+        res.render("main/product", {
+          product: product,
+          similarProducts: similarProducts,
+        });
+      });
     });
-  });
 });
 
 router.get("/cart", passportConf.isAuthenticated, function (req, res, next) {

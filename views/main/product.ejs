@@ -1,31 +1,29 @@
 <% layout('layout') -%>
 
-<div class="containerWrapper mt-10">
+<div class="wrapper mt-10">
     <div class="row">
         <div class="col-lg-12">
             <div class="list-group">
                 <span class="list-group-item">
                     <div class="row">
-                        <div class="col-md-3">
-                           <img class="img-fluid" src="../<%= product.image %>" alt="logitech mouse">
+                        <div class="col-md-4">
+                           <img style="height: 550px; object-fit: contain;" class="img-fluid" src="../<%= product.image %>" alt="logitech mouse">
                         </div>
             
-                        <div class="col-md-9 jumbotron">
-                            <h4 class="product-heading">
+                        <div class="col-md-8">
+                            <h4 class="product__title">
                                 <%= product.name %>
                             </h4>
                             
-                                <p>
+                                <p class="product__description">
                                     <%= product.description %>
                                 </p>
                             
-                            <p><strong>Product Color:</strong> <%= product.color %>
+                            <p>Product Color: <strong><%= product.color %></strong>
                             </p>
-                            <p><strong>Product Material:</strong> <%= product.productMaterial %>
-                            </p>
-                            <strong><h4 style="color: rgb(21, 160, 107);">Price: <i class="fas fa-rupee-sign"></i>
+                            <p style="color: rgb(21, 160, 107);">Price: <i class="fas fa-euro-sign"></i>
                                 <%= product.price %>
-                            </h4></strong>
+                            </p>
                             <form action='' method="post">
                                 <div class="btn-group" role="group" aria-label="...">
                                     <input type="hidden" name="quantity" id="quantity" value="1"></input>
@@ -37,11 +35,11 @@
                                     <input type="hidden" name="product_id" id="quantity" value="<%= product._id %>"></input>
                                     <input type="hidden" name="priceHidden" id="priceHidden" value="<%= product.price %>"></input>
                                     <br>
-                                
-                                <div class="col-md-4">
-                                    <label for="priceValue"><strong>Total Cost: <i class="fas fa-rupee-sign"></i></strong></label>
-                                    <input type="text" name="priceValue" id="priceValue" class="form-control total-cost-enhancer" value="<%= product.price %>"></input>
                                 </div>
+                                
+                                <div style="display: flex; gap: 10px; align-items: center;">
+                                    <label for="priceValue">Total Cost: <i class="fas fa-euro-sign"></i></label>
+                                    <input type="text" name="priceValue" id="priceValue" class="total-cost-enhancer" value="<%= product.price %>"></input>
                                 </div>
             
                                 <% if (user) { %>
@@ -57,4 +55,45 @@
             </div>
         </div>
     </div>
+
+    <div class="my-5">
+        <h2>Similar Products</h2>
+  <div class="mb-5">
+    <% if (similarProducts.length == 0) { %>
+    <div style="width: 100%; display: flex; justify-content: center">
+      <img src="/assets/no-item-found-here.png" alt="no-product-logo" />
+    </div>
+    <% } else { %>
+
+    <div class="category__products">
+      <% for (var i=0; i< similarProducts.length; i++) { %>
+      <div class="category__product">
+        <div>
+          <img
+            style="width: 100px; height: 100px; object-fit: contain"
+            class="img-fluid"
+            src="../<%= similarProducts[i].image %>"
+            alt=""
+          />
+        </div>
+        <h2><%= similarProducts[i].name %></h2>
+        <div class="caption">
+          <p>
+            <i class="fas fa-euro-sign"></i>
+            <%= similarProducts[i].price %>
+          </p>
+        </div>
+        <div>
+          <a
+            class="btn btn-sm btn-outline-info"
+            href="/product/<%= similarProducts[i]._id %>"
+            >Show More</a
+          >
+        </div>
+      </div>
+      <% } %>
+    </div>
+    <% } %>
+  </div>
+</div>
 </div>
