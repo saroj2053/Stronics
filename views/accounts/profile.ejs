@@ -1,24 +1,14 @@
 <% layout('layout') -%>
 
-<style>
-    .img-history {
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        padding: 5px;
-        width: 100px;
-        height: 100px;
-    }
-</style>
-<div class="containerWrapper mt-10">
+<div class="wrapper mt-10">
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-6">
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
             <img class="d-block img-fluid mb-3 rounded-circle" src="<%= user.profile.picture %>">
             <a class="btn btn-info btn-sm btn-center" href="/edit-profile">Edit Profile</a>
-     
         </div>
 
-        <div class="mt-10">
+        <div class="mt-10 text-center">
 
             <p class="profileName"><%= user.profile.name %></p>
             <p class="lead userEmail"><%= user.email %></p>
@@ -35,9 +25,16 @@
         </div>
      
     </div>
-
     
-    <div class="col-lg-8">
+    <div class="col-lg-6 my-5">
+    <% if(user.history.length === 0) { %>
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            No orders history
+        </div>
+    <% } else { %>
         <h3 class="text-center">History</h4>
         <table class="table table-striped sticky-header">
             <thead >
@@ -53,11 +50,11 @@
                 <% for(var i=0; i < user.history.length; i++) {%>
                     <tr>
                         <td><%= user.history[i]._id %></td>
-                        <td style="display: flex; align-items: start;">
+                        <td style="display: flex; gap: 20px; align-items: start;">
                             <div class="col-md-4">
                                 <img class="img-history" src="<%= user.history[i].item.image %>" alt="">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <p>
                                     <%= user.history[i].item.name %>
                                 </p>
@@ -74,5 +71,7 @@
             </tbody>
         </table>
     </div>
+    <% } %>
+   
 </div>
 </div>
