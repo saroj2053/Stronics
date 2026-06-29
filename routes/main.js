@@ -18,21 +18,37 @@ const shuffleProductsArray = (prod) => {
 };
 
 router.get("/", function (req, res, next) {
+  const page = parseInt(req.query.page) || 1;
+  const limit = 10;
+  const skip = (page - 1) * limit;
+
   if (req.user) {
+    Product.countDocuments().exec(function (err, count) {
+      if (err) return next(err);
+      Product.find()
+        .populate("category")
+        .skip(skip)
+        .limit(limit)
+        .exec(function (err, products) {
+          if (err) return next(err);
+          res.render("main/product-main", {
+            products: products,
+            currentPage: page,
+            totalPages: Math.ceil(count / limit),
+            totalProducts: count,
+          });
+        });
+    });
+  } else {
     Product.find()
       .populate("category")
       .exec(function (err, products) {
         if (err) return next(err);
-        Product.count().exec(function (err, count) {
-          if (err) return next(err);
-          const shuffledProducts = shuffleProductsArray(products);
-          res.render("main/product-main", {
-            products: shuffledProducts,
-          });
+        const shuffledProducts = shuffleProductsArray(products);
+        res.render("main/home", {
+          products: shuffledProducts,
         });
       });
-  } else {
-    res.render("main/home");
   }
 });
 
@@ -41,14 +57,27 @@ router.get("/about", function (req, res) {
 });
 
 router.get("/products/:id", function (req, res, next) {
-  Product.find({ category: req.params.id })
-    .populate("category")
-    .exec(function (err, products) {
-      if (err) return next(err);
-      res.render("./main/category", {
-        products: products,
+  const page = parseInt(req.query.page) || 1;
+  const limit = 10;
+  const skip = (page - 1) * limit;
+
+  Product.countDocuments({ category: req.params.id }).exec(function (err, count) {
+    if (err) return next(err);
+    Product.find({ category: req.params.id })
+      .populate("category")
+      .skip(skip)
+      .limit(limit)
+      .exec(function (err, products) {
+        if (err) return next(err);
+        res.render("./main/category", {
+          products: products,
+          currentPage: page,
+          totalPages: Math.ceil(count / limit),
+          totalProducts: count,
+          categoryId: req.params.id,
+        });
       });
-    });
+  });
 });
 
 router.get("/product/:id", function (req, res, next) {

@@ -4,17 +4,12 @@
     <div class="col-md-6 mx-auto">
       <div class="card">
         <div class="card-header">
-          <h2>Add a new Category</h2>
+          <h2 class="mb-0"><i class="fas fa-folder-plus"></i> Add Category</h2>
         </div>
         <div class="card-body">
           <% if(message.length > 0) { %>
           <div class="alert alert-success alert-dismissable">
-            <button
-              type="button"
-              class="close"
-              data-dismiss="alert"
-              aria-label="Close"
-            >
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
             <%= message %>
@@ -22,11 +17,11 @@
           <% } %>
           <form action="" method="POST">
             <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" class="form-control" name="name" id="name" />
+              <label for="name">Category Name</label>
+              <input type="text" class="form-control" name="name" id="name" placeholder="Enter category name" />
             </div>
-            <button type="submit" class="btn btn-primary btn-block">
-              Submit
+            <button type="submit" class="btn btn-primary btn-block btn-round">
+              <i class="fas fa-plus"></i> Create Category
             </button>
           </form>
         </div>

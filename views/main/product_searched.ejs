@@ -1,48 +1,37 @@
 <% layout('layout') -%>
 
 <div class="wrapper my-5">
-  <h4>Search Results for: <%= search_term %></h4>
+  <h4 class="product-heading mb-4">
+    <i class="fas fa-search"></i> Search Results for: "<%= search_term %>"
+  </h4>
   <hr />
   <% if (products.length === 0) { %>
-  <div class="alert alert-success alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <h6 class="display-4">No Products !!!</h6>
+  <div class="empty-state">
+    <img class="rounded" src="/assets/no-product-found.png" alt="" />
+    <h4>No products found</h4>
+    <p class="text-muted">Try searching with different keywords</p>
+    <a class="btn btn-primary btn-round" href="/products">Browse All Products</a>
   </div>
-  <div class="text-center">
-    <img class="rounded" src="/assets/no-product-found.png" alt="" srcset="" />
-  </div>
-
   <% } else { %>
 
   <div class="list-group">
     <% for (var i=0; i< products.length; i++) { %>
     <span class="list-group-item">
-      <div class="row" id="searchResults">
-        <div class="col-md-4">
-          <img
-            class="img-fluid searchedProduct__images"
-            src="<%= products[i].image %>"
-            alt=""
-          />
+      <div class="row align-items-center">
+        <div class="col-md-3 text-center">
+          <img class="img-fluid searchedProduct__images" src="<%= products[i].image %>" alt="" />
         </div>
-        <div class="col-md-8 caption">
+        <div class="col-md-7">
           <h2 class="searched-product__heading"><%= products[i].name %></h2>
-          <p class="searched-product__description">
-            <%= products[i].description %>
-          </p>
+          <p class="searched-product__description"><%= products[i].description %></p>
           <p class="searched-product__price">
-            <i class="fas fa-rupee-sign"></i>
-            <%= products[i].price %>
+            <i class="fas fa-rupee-sign"></i> <%= products[i].price %>
           </p>
         </div>
-        <div class="col-md-2">
-          <a
-            class="btn btn-outline-info more-info my-3"
-            href="/product/<%= products[i]._id %>"
-            >More Info</a
-          >
+        <div class="col-md-2 text-center">
+          <a class="btn btn-outline-info btn-round" href="/product/<%= products[i]._id %>">
+            <i class="fas fa-eye"></i> View
+          </a>
         </div>
       </div>
     </span>

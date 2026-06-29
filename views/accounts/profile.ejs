@@ -2,76 +2,66 @@
 
 <div class="wrapper mt-10">
 <div class="row">
-    <div class="col-lg-6">
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <img class="d-block img-fluid mb-3 rounded-circle" src="<%= user.profile.picture %>">
-            <a class="btn btn-info btn-sm btn-center" href="/edit-profile">Edit Profile</a>
+    <div class="col-lg-4">
+        <div class="text-center">
+            <img class="profile-avatar mb-3" src="<%= user.profile.picture %>" />
+            <a class="btn btn-info btn-sm btn-round" href="/edit-profile">
+                <i class="fas fa-edit"></i> Edit Profile
+            </a>
         </div>
 
-        <div class="mt-10 text-center">
-
+        <div class="mt-4 text-center">
             <p class="profileName"><%= user.profile.name %></p>
-            <p class="lead userEmail"><%= user.email %></p>
+            <p class="userEmail"><i class="fas fa-envelope text-muted"></i> <%= user.email %></p>
     
             <% if (user.address === "" || typeof user.address === 'undefined') { %>
-    
-                <p>Address: <span style="color:#c0392b; font-weight: bold;">You have no address</span></p>
-    
+                <p class="mt-3">
+                    <span class="text-muted">Address:</span>
+                    <span class="text-danger font-weight-bold">No address set</span>
+                </p>
             <% } else { %>
-    
-            <p class="userAddress"> <%= user.address %></p>
-    
+                <p class="userAddress mt-3">
+                    <i class="fas fa-map-marker-alt text-muted"></i> <%= user.address %>
+                </p>
             <% } %>
         </div>
-     
     </div>
     
-    <div class="col-lg-6 my-5">
+    <div class="col-lg-8 my-5">
     <% if(user.history.length === 0) { %>
-        <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            No orders history
+        <div class="alert alert-success">
+            No orders history yet
         </div>
     <% } else { %>
-        <h3 class="text-center">History</h4>
-        <table class="table table-striped sticky-header">
-            <thead >
-                <tr class="text-center">
-                    <th>_id</th>
+        <h3 class="product-heading text-center mb-4">
+            <i class="fas fa-history"></i> Order History
+        </h3>
+        <table class="table table-striped text-center">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
                     <th>Items</th>
-                    <th>Amount </th>
+                    <th>Amount</th>
                 </tr>
             </thead>
-            
             <tbody>
-                <div class="row">
                 <% for(var i=0; i < user.history.length; i++) {%>
                     <tr>
-                        <td><%= user.history[i]._id %></td>
-                        <td style="display: flex; gap: 20px; align-items: start;">
-                            <div class="col-md-4">
+                        <td><small><%= user.history[i]._id.toString().substring(0, 10) %>...</small></td>
+                        <td>
+                            <div class="d-flex align-items-center gap-3">
                                 <img class="img-history" src="<%= user.history[i].item.image %>" alt="">
-                            </div>
-                            <div class="col-md-4">
-                                <p>
-                                    <%= user.history[i].item.name %>
-                                </p>
+                                <span><%= user.history[i].item.name %></span>
                             </div>
                         </td>
-                        <div class="col-md-4">
-                            <td><i class="fas fa-rupee-sign"></i> <strong><%= user.history[i].paid %></strong>
-                            </td>
-                        </div>
+                        <td>
+                            <i class="fas fa-rupee-sign"></i> <%= user.history[i].paid %>
+                        </td>
                     </tr>
-                    <% } %>
-                </div>
-                
+                <% } %>
             </tbody>
         </table>
-    </div>
     <% } %>
-   
+    </div>
 </div>
 </div>

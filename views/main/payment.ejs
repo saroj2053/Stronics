@@ -2,22 +2,17 @@
 
 <div class="containerWrapper mt-10">
   <div class="row">
-    <div class="list-group">
+    <div class="list-group w-100">
       <span class="list-group-item">
-        <div class="row">
-          <div class="col-md-4">
-            <img
-              class="img-fluid"
-              src="assets/payment-gateway.png"
-              alt=""
-              srcset=""
-            />
+        <div class="row align-items-center">
+          <div class="col-md-4 text-center">
+            <img class="img-fluid" src="assets/payment-gateway.png" alt="" />
           </div>
           <div class="col-md-6">
-            <p class="display-4">Welcome to Stripe Payment Gateway</p>
+            <h1 class="display-4 mb-0">Payment Gateway</h1>
+            <p class="text-muted">Secure payment powered by Stripe</p>
           </div>
-
-          <div class="col-md-2">
+          <div class="col-md-2 text-center">
             <form action="/payment" method="POST">
               <script
                 src="//checkout.stripe.com/v2/checkout.js"

@@ -1,99 +1,93 @@
 <% layout('layout') -%>
 
 <div class="wrapper mt-10">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="list-group">
-                <span class="list-group-item">
-                    <div class="row">
-                        <div class="col-md-4">
-                           <img style="height: 550px; object-fit: contain;" class="img-fluid" src="../<%= product.image %>" alt="logitech mouse">
-                        </div>
-            
-                        <div class="col-md-8">
-                            <h4 class="product__title">
-                                <%= product.name %>
-                            </h4>
-                            
-                                <p class="product__description">
-                                    <%= product.description %>
-                                </p>
-                            
-                            <p>Product Color: <strong><%= product.color %></strong>
-                            </p>
-                            <p style="color: rgb(21, 160, 107);">Price: <i class="fas fa-rupee-sign"></i>
-                                <%= product.price %>
-                            </p>
-                            <form action='' method="post">
-                                <div class="btn-group" role="group" aria-label="...">
-                                    <input type="hidden" name="quantity" id="quantity" value="1"></input>
-                                    <button type="button" id="minus" class="btn btn-outline-secondary">-</button>
-                                    <button type="button" id="total" class="btn btn-outline-secondary">1</button>
-                                    <button type="button" id="plus" class="btn btn-outline-secondary">+</button>
-                                </div>
-                                <div class="form-group">
-                                    <input type="hidden" name="product_id" id="quantity" value="<%= product._id %>"></input>
-                                    <input type="hidden" name="priceHidden" id="priceHidden" value="<%= product.price %>"></input>
-                                    <br>
-                                </div>
-                                
-                                <div style="display: flex; gap: 10px; align-items: center;">
-                                    <label for="priceValue">Total Cost: <i class="fas fa-rupee-sign"></i></label>
-                                    <input type="text" name="priceValue" id="priceValue" class="total-cost-enhancer" value="<%= product.price %>"></input>
-                                </div>
-            
-                                <% if (user) { %>
-                                    <button type="submit" class="btn btn-primary btn-sm">Add to Cart</button>
-                                    <% } else { %>
-                                        <a href='/signup' class="btn btn-warning btn-sm">Signup to begin buying!</a>
-                                        <% } %>
-                            </form>
-            
-                        </div>
-                    </div>
-                </span>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-lg-5 mb-4">
+      <div class="product-image-card">
+        <img class="img-fluid product-detail-image" src="../<%= product.image %>" alt="<%= product.name %>">
+      </div>
     </div>
 
-    <div class="my-5">
-        <h2>Similar Products</h2>
-  <div class="mb-5">
+    <div class="col-lg-7">
+      <div class="product-info-card">
+        <span class="product__category"><%= product.category.name %></span>
+        <h1 class="product__title"><%= product.name %></h1>
+
+        <p class="product__description"><%= product.description %></p>
+
+        <div class="product-meta">
+          <div class="meta-item">
+            <span class="meta-label">Color</span>
+            <span class="meta-value"><%= product.color %></span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Price</span>
+            <span class="product-detail-price"><i class="fas fa-rupee-sign"></i> <%= product.price %></span>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <form action="" method="post">
+          <div class="quantity-row">
+            <span class="quantity-label">Quantity</span>
+            <div class="btn-group" role="group">
+              <input type="hidden" name="quantity" id="quantity" value="1">
+              <button type="button" id="minus" class="btn btn-outline-secondary qty-btn">-</button>
+              <button type="button" id="total" class="btn btn-outline-secondary qty-btn qty-value">1</button>
+              <button type="button" id="plus" class="btn btn-outline-secondary qty-btn">+</button>
+            </div>
+          </div>
+
+          <div class="total-row">
+            <label for="priceValue" class="total-label">Total Cost</label>
+            <div class="total-input-wrap">
+              <i class="fas fa-rupee-sign"></i>
+              <input type="text" name="priceValue" id="priceValue" class="total-cost-enhancer" value="<%= product.price %>" readonly>
+            </div>
+          </div>
+
+          <input type="hidden" name="product_id" value="<%= product._id %>">
+          <input type="hidden" name="priceHidden" id="priceHidden" value="<%= product.price %>">
+
+          <% if (user) { %>
+          <button type="submit" class="btn btn-primary btn-round btn-add-cart">
+            <i class="fas fa-cart-plus"></i> Add to Cart
+          </button>
+          <% } else { %>
+          <a href="/signup" class="btn btn-warning btn-round btn-add-cart">
+            <i class="fas fa-user-plus"></i> Signup to begin buying!
+          </a>
+          <% } %>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-5">
+    <h2 class="product-heading mb-4">
+      <i class="fas fa-tags"></i> Similar Products
+    </h2>
     <% if (similarProducts.length == 0) { %>
-    <div style="width: 100%; display: flex; justify-content: center">
-      <img src="/assets/no-item-found-here.png" alt="no-product-logo" />
+    <div class="empty-state">
+      <img src="/assets/no-item-found-here.png" alt="no-product-logo">
+      <h4>No similar products found</h4>
     </div>
     <% } else { %>
-
     <div class="category__products">
       <% for (var i=0; i< similarProducts.length; i++) { %>
       <div class="category__product">
-        <div>
-          <img
-            style="width: 100px; height: 100px; object-fit: contain"
-            class="img-fluid"
-            src="../<%= similarProducts[i].image %>"
-            alt=""
-          />
-        </div>
+        <img class="img-fluid" src="../<%= similarProducts[i].image %>" alt="">
         <h2><%= similarProducts[i].name %></h2>
-        <div class="caption">
-          <p>
-            <i class="fas fa-rupee-sign"></i>
-            <%= similarProducts[i].price %>
-          </p>
-        </div>
-        <div>
-          <a
-            class="btn btn-sm btn-outline-info"
-            href="/product/<%= similarProducts[i]._id %>"
-            >Show More</a
-          >
-        </div>
+        <p class="searched-product__price mb-0">
+          <i class="fas fa-rupee-sign"></i> <%= similarProducts[i].price %>
+        </p>
+        <a class="btn btn-sm btn-outline-info" href="/product/<%= similarProducts[i]._id %>">
+          <i class="fas fa-eye"></i> Show More
+        </a>
       </div>
       <% } %>
     </div>
     <% } %>
   </div>
-</div>
 </div>
